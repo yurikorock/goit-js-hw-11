@@ -19,5 +19,7 @@ form.addEventListener('submit', event => {
     return;
   }
 
+  getImages(inputValue);
+
   form.reset();
 });
