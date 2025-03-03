@@ -12,14 +12,36 @@ form.addEventListener('submit', event => {
   event.preventDefault();
 
   const inputValue = input.value.trim();
-  console.log(inputValue);
+  // console.log(inputValue);
 
   if (inputValue === '') {
-    alert('Поле не може бути порожнім. Введіть текст для пошуку...');
+    iziToast.show({
+      message: 'Поле не може бути порожнім. Введіть текст для пошуку...',
+      messageColor: 'white',
+      backgroundColor: '#ef4040',
+      position: 'topRight',
+      class: 'custom-toast',
+    });
+
     return;
   }
 
-  getImages(inputValue);
+  getImages(inputValue)
+    .then(images => {
+      if (images.length === 0) {
+        iziToast.show({
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+          messageColor: 'white',
+          backgroundColor: '#ef4040',
+          position: 'topRight',
+          class: 'custom-toast',
+        });
+
+        return;
+      }
+    })
+    .catch(error => console.log(error));
 
   form.reset();
 });
