@@ -2,6 +2,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { getImages } from './js/pixabay-api';
+import { renderGallery } from './js/render-functions';
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input-form');
@@ -40,6 +41,7 @@ form.addEventListener('submit', event => {
 
         return;
       }
+      renderGallery(images);
     })
     .catch(error => console.log(error));
 

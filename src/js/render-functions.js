@@ -1,27 +1,38 @@
+import SimpleLightbox from 'simplelightbox';
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const gallery = document.querySelector('.gallery');
 
-
-import function renderGallery(images) {
-  const markup = images.map((image) => {
-    // отримали значення і робимо деструктурізацію по ключовим значенням
-    const { webformatURL, largeImageURL, tags, likes, views, comments, downloads } = image
-    return `<li>
+export function renderGallery(images) {
+  const markup = images
+    .map(image => {
+      // отримали значення і робимо деструктурізацію по ключовим значенням
+      const {
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      } = image;
+      return `<a href="${largeImageURL}" class="gallery-link">
+            <img src="${webformatURL}" alt="${tags}" class="gallery-image" />
+            <div class="gallery-info">
 	          <p><b>likes</b>: ${image.likes}</p>
 	          <p><b>views</b>: ${image.views}</p>
 	          <p><b>comments</b>: ${image.comments}</p>
             <p><b>downloads</b>: ${image.downloads}</p>
-	        </li>`
-  }).join("separator");
+            </div>
+	        </a>`;
+    })
+    .join('');
+  gallery.insertAdjacentHTML('beforeend', markup);
+
+  let lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+  lightbox.refresh();
 }
-// function renderUsers(users) {
-//   const markup = users
-//     .map(user => {
-//       return `<li>
-//           <p><b>Name</b>: ${user.name}</p>
-//           <p><b>Email</b>: ${user.email}</p>
-//           <p><b>Company</b>: ${user.company.name}</p>
-//         </li>`;
-//     })
-//     .join('');
-//   userList.insertAdjacentHTML('beforeend', markup);
-// }

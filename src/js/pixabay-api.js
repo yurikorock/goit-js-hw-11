@@ -7,7 +7,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 
 export function getImages(query) {
   return axios
-    .get(BASE_URL, {
+    .get('/', {
       params: {
         key: API_KEY,
         q: query,
