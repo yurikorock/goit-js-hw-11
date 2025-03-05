@@ -35,6 +35,7 @@ export function renderGallery(images) {
   let lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
+    captions: false,
   });
   lightbox.refresh();
 }
