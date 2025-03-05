@@ -6,7 +6,7 @@ import { renderGallery } from './js/render-functions';
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input-form');
-const btnSearch = document.querySelector('.btn-submit');
+// const btnSearch = document.querySelector('.btn-submit');
 
 form.addEventListener('submit', event => {
   // console.log('Button pressed');

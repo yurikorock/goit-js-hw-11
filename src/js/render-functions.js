@@ -5,6 +5,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const gallery = document.querySelector('.gallery');
 
 export function renderGallery(images) {
+  gallery.innerHTML = ''; // Очищаємо галерею перед новим рендерингом
+
   const markup = images
     .map(image => {
       // отримали значення і робимо деструктурізацію по ключовим значенням
