@@ -19,15 +19,17 @@ export function renderGallery(images) {
         comments,
         downloads,
       } = image;
-      return `<a href="${largeImageURL}" class="gallery-link">
-            <img src="${webformatURL}" alt="${tags}" class="gallery-image" />
+      return `<li class="gallery-item">
+      <a href="${largeImageURL}" class="gallery-link">
+            <img src="${webformatURL}" alt="${tags}" class="gallery-image" width="640" height="360" />
+            </a>
             <div class="gallery-info">
-	          <p><b>likes</b>: ${image.likes}</p>
-	          <p><b>views</b>: ${image.views}</p>
-	          <p><b>comments</b>: ${image.comments}</p>
-            <p><b>downloads</b>: ${image.downloads}</p>
+	          <p class="gallery-info-name">likes<span class="galery-info-value">${image.likes}</span></p>
+	          <p class="gallery-info-name">views<span class="galery-info-value">${image.views}</span></p>
+	          <p class="gallery-info-name">comments<span class="galery-info-value">${image.comments}</span></p>
+            <p class="gallery-info-name">downloads<span class="galery-info-value">${image.downloads}</span></p>
             </div>
-	        </a>`;
+        </li>`;
     })
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
