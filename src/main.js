@@ -7,6 +7,7 @@ import { renderGallery } from './js/render-functions';
 const form = document.querySelector('.form');
 const input = document.querySelector('.input-form');
 // const btnSearch = document.querySelector('.btn-submit');
+const loader = document.querySelector('.loader');
 
 form.addEventListener('submit', event => {
   // console.log('Button pressed');
@@ -26,7 +27,7 @@ form.addEventListener('submit', event => {
 
     return;
   }
-
+  loader.style.display = 'block';
   getImages(inputValue)
     .then(images => {
       if (images.length === 0) {
@@ -43,7 +44,10 @@ form.addEventListener('submit', event => {
       }
       renderGallery(images);
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(error))
+    .finally(() => {
+      loader.style.display = 'none';
+    });
 
   form.reset();
 });
