@@ -3,11 +3,13 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 import { getImages } from './js/pixabay-api';
 import { renderGallery } from './js/render-functions';
+import { clearGallery } from './js/render-functions';
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input-form');
 // const btnSearch = document.querySelector('.btn-submit');
 const loader = document.querySelector('.loader');
+const gallery = document.querySelector('.gallery');
 
 form.addEventListener('submit', event => {
   // console.log('Button pressed');
@@ -31,6 +33,7 @@ form.addEventListener('submit', event => {
   getImages(inputValue)
     .then(images => {
       if (images.length === 0) {
+        gallery.innerHTML = ''; // Очищаємо галерею якщо масив пустий
         iziToast.show({
           message:
             'Sorry, there are no images matching your search query. Please try again!',

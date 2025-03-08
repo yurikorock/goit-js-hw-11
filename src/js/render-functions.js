@@ -4,8 +4,18 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
 
-export function renderGallery(images) {
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+  captions: false,
+});
+
+export function clearGallery() {
   gallery.innerHTML = ''; // Очищаємо галерею перед новим рендерингом
+}
+
+export function renderGallery(images) {
+  clearGallery();
 
   const markup = images
     .map(image => {
@@ -34,10 +44,5 @@ export function renderGallery(images) {
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
 
-  let lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-    captions: false,
-  });
   lightbox.refresh();
 }
